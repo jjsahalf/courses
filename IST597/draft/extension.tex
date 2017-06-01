@@ -1,0 +1,106 @@
+\section{Extension of ARM TrustZone}\label{sec:extensions}
+
+With respect to the discussed differences between Intel SGX and ARM TrustZone,
+ in this section, we presents the extension techniques on TrustZone that allows developers to use it, as in SGX.
+
+To summarize, the main differences of the two techniques are:
+\begin{itemize}
+\item Architecture: With TrustZone we often think of a CPU which is in two halves i.e. the insecure world and the secure world. In Intel SGX model we have one CPU which can have many secure enclaves (islands).
+\item Transparency: TrustZone technology is programmed into the hardware, enabling the protection of memory and peripherals. But SGX is a set of instructions and mechanisms for memory accesses added to Intel architecture processors.
+\item Process: Due to the difference in architecture design, the service in Intel SGX have additional verified launching, licensing, and attestations.
+\end{itemize}
+
+With respect to these main differences,  we are going to explicitly explain 
+the enabling extensions to ARM TrustZone.
+
+\subsection{Isolation}
+ARM TrustZone is a hardware isolation technology. Each processor mode has its
+own memory access region and privilege. The code running in the normal world
+cannot access the memory in the secure world, while the program executed in 
+the secure world can access the memory in normal world. The secure and normal 
+worlds can be identified by reading the NS bit in the Secure Configuration 
+Register (SCR), which can only be modified in the secure world.
+Due to the distinction in archietecture, the functionalities are different for 
+these two technologies. TrustZone does not distinguish between different 
+secure application processes in hardware, in another word, the privilege are
+not explicitly specified. 
+
+Each processor mode has its own memory access region and privilege. The code 
+running in the normal world cannot access the memory in the secure world, 
+while the program executed in the secure world can access the memory in normal
+To enable confidentiality between different applications, we should extend the
+current system with isolations, either hardware-based or virtually. In 
+addition, for specifying priviliges between applications, it requires a
+controller which is similar to management engines in Intel SGX. The Intel 
+Management Engine (ME) is a micro-computer embedded inside of all recent Intel
+processors, and it exists on Intel products including servers, workstations, 
+desktops. It will  schedule the application process and control the invocation 
+privileges as well. In order to assess security among different application 
+processes, it should also provide attestation mechanisms. Local attestation 
+enables an process to verify another running on the same physical CPU. Remote 
+attestation can be used by a remote party to check if the attested process is 
+indeed running on a genuine CPU. It allows initial provisioning of keys and 
+secrets. 
+
+\subsection{Abstraction}
+The development environment in Intel SGX is more mature than ARM TrustZone,
+which provide abundant APIs for developers to use. For developers, Intel SGX 
+is more transparent. It is a set of instructions which developers can rely on. 
+Developers can take advantage of the enclaves without understanding the 
+detailed implementations on hardware enforcement. However, in the design of 
+ARM TrustZone, only hardware environment is divided which requires additional
+effort of the developer.
+
+To achieve a same development transparency for ARM TrustZone, we should extend 
+current design with more abstracted implementation choices. That is, to 
+encapsulate possible process initializations, and privilege specifications. By 
+abstract the hardware functionalities into software-level, developers can 
+easily access a secure development by merely changing the APIs but the service 
+logic remains the same and security maintainance is done by the trusted 
+computing platform.
+
+
+\subsection{Additional Processes}
+Because of the different archietectures of Intel SGX and ARM TrustZone, the 
+processes to set up a secure application and the principle to enforce the 
+overall integrity is different. Therefore, to enable a same or similar 
+functionality of ARM TrustZone, it requires additional processes in the
+development workflow. In this part, we will explain these processes one after
+another.
+
+\subsubsection{Verified Process Launch} 
+For Intel SGX, when loading an enclave into memory, the CPU measures its 
+content in a chained cryptographic hash log, stored in a register called 
+MRENCLAVE. This is equivalent to a Platform Configuration Register (PCR) in a 
+TPM. Before running the enclave, the CPU verifies MRENCLAVE against a 
+vendor-signed version and aborts when finding any mismatches. The verified
+enclave launch in Intel SGX enforces the isolation of application processes.
+Thus, when isolating different processes in ARM TrustZone, it is still 
+required that we extend the verified launching into regular setup procedures.
+
+\subsubsection{Licensing}
+SGX has a feature, called launch enclave. During
+enclave initialization, the CPU verifies a so-called EINITTOKEN, which 
+contains several enclave attributes to enforce, including the debug mode flag. 
+The EINITTOKEN has to be signed by a special launch key, which is owned by 
+so-called launch enclaves, is sued by Intel. Hence, by issuing proper launch 
+enclaves, Intel has full control over which enclaves are to be executed in 
+debug or production mode. The SGX evaluation SDK is shipped with a launch 
+enclave issuing EINITTOKENs for debug enclaves only. In order to run an 
+enclave in production mode, one needs to obtain a proper license from Intel.
+This process ensures the confidentiality within any enclaves. Therefore, to
+achieve a similar functionality for ARM TrustZone with isolation, we should 
+add additional licensing process.
+
+\subsubsection{Attestation}
+In Intel SGX, because the running enclave is more than one, the enclave 
+contacts the service provider to have its sensitive data provisioned to the 
+enclave. The platform produces a secure assertion that identifies the hardware 
+environment and the enclave. It has dedicated sealing and attestation 
+components that uphold the security model assertions below to prove to the 
+service provider that the secrets will be protected according to the intended 
+security level. These components enforce a set of designed privileges among
+enclaves which is not maintained in ARM TrustZone. Therefore, to ensure the 
+security of application processes in ARM TrustZone, we should also maintain
+a corresponding attestation mechanism including local attestation and remote
+attestation.

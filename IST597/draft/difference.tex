@@ -108,7 +108,7 @@ The two most important APIs are for creating and destroying enclaves
 in the memory. Conceptually, they are just like special ``malloc''
 and ``free''. ARM TrustZone can be applied to different layers. 
 One way is just to use ARM TrustZone APIs to invoke SMC calls in 
-application levels. The other way is so called ``co-operative OSs''.
+application levels. The other way is so called ``co-operative OSes''.
 The operating system resides in both the secure world and the 
 insecure world. The OS on the two sides must handle interrupts and
 scheduling properly. Besides the SMC calls, semaphores, lock-free
@@ -137,7 +137,7 @@ WolfSSL is a ``small, portable, embedded, SSL/TLS library targeted
 for use by embedded system developers''~\cite{wolfssl}. It supports Intel SGX in
 its product. Bromium has prototyped an extension to their product 
 which takes advantage of SGX to protect the online credentials~\cite{bromium}.
-Samsung Knox might be a killer application that utilizes ARM TrustZone
+Samsung Knox~\cite{knox} might be a killer application that utilizes ARM TrustZone
 technology. It is widely deployed in Samsung mobile phones. 
 %Now Intel SGX SDK supports Microsoft Windows 7, Windows 8.1, Windows 10,
 %and Ubuntu 14.04. 
