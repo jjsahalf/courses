@@ -25,8 +25,8 @@ According to the definitions given by Trusted Computing Group. A complete
 Trusted system must have the following 6 elements: endorsement key, 
 secure input and output, memory curtaining, sealed storage, remote 
 attestation, and trusted third party. More specifically, both Intel
-SGX and ARM TrustZone are two measurements to fulfill memory curtaining
-part in the whole Trusted system.  
+SGX and ARM TrustZone are two measurements to fulfill some parts
+in the whole Trusted system.  
  
 In the following subsections, we will first briefly introduce 
 Intel SGX and ARM TrustZone respectively. Then we will compare 
@@ -48,17 +48,92 @@ into enclaves.
 
 
 \subsection{ARM TrustZone}
+According to ARM, ARM TrustZone technology ``is a System on
+Chip (SoC) and CPU system-wide approach to security''. Its key
+idea is to provide two virtual processors to create two 
+hardware-separated worlds, the secure world and the insecure
+world. Any information flows from the secure world to the 
+insecure world must go through the secure monitor. Besides 
+this difference, the two worlds have the same capabilities so
+each side can operate independently.   
 
 \subsection{Comparison}
 \subsubsection{Architecture}
+Both Intel SGX and ARM TrustZone are security extensions to 
+their existing CPU architectures. Conceptually, Intel SGX
+is more lightweight than ARM TrustZone.
+Intel SGX essentially is an 
+extension to Intel instruction sets. Only with those special 
+instructions, data can be read from written to the enclaves.
+ARM TrustZone, from our point of view, is a hardware-assisted
+virtualization. It provides two completely separate virtual 
+running environment. Each side has the complete computation 
+capacity. To this extent, Intel SGX and ARM TrustZone have 
+different security models.    
+
+
+
+\subsubsection{Security}
+Intel SGX and ARM TrustZone follows the different security models.
+The security provided by Intel SGX are from following two aspects.
+First, only several specific instructions, which requires explicitly 
+to be called by developers, can access enclaves. Second, the 
+cryptographic key is only available to the Intel processors. In short,
+Intel SGX tries to help developers to achieve information hiding.
+ARM TrustZone, from our perspective, provides isolation, which does
+not grant security automatically. The key insights of ARM TrustZone are to
+reduce attack surface and isolation. It assumes that developers will 
+put almost all code in the insecure world. Those code, such as the 
+operating system, is complex, hard to be audited and analysed. They are 
+doomed to have exploitable vulnerabilities. On the other hand, even the 
+secure world has the capability of running any code, we usually only put 
+some small pieces of code in the secure world. Those code has simpler 
+logic and performs some critical function, like signing or making a transaction.
+So we can review, audit, perform model checking, analyze those code
+to make sure it is very likely to be bug free. A malicious user
+may temper the operating system in the insecure world easily, however,
+he still cannot perform those critical functions in the secure world 
+arbitrarily. However, if the code in the secure world has vulnerabilities,
+TrustZone cannot prevent a malicious user from exploiting it.             
+
+
+
+
 \subsubsection{Development}
-Right now Intel SGX only provides enclave binding API in C and C++.
+Development in Intel SGX is easier. Intel SGX provides enclave 
+binding API in C and C++. To utilize Intel SGX in an application,
+a developer can use the API provided by Intel SGX SDK. A developer
+can explicitly put the data of interests into enclaves. 
+The two most important APIs are for creating and destroying enclaves 
+in the memory. Conceptually, they are just like special ``malloc''
+and ``free''.     
+
+Regarding ARM TrustZone,
+  
 
 \subsubsection{Invocation}
+During runtime, the SGX APIs called by the application will invoke
+the driver of SGX to perform encryption, decryption, read, and write
+operations. In ARM TrustZone, when the insecure world requests a service
+in the secure world, it makes a SMC call to transfer the control to
+the secure world.    
+
+
+
 \subsubsection{Encryption}
-\subsubsection{Security}
-\subsubsection{Lifecycle}
+Intel SGX uses symmetric encryption to encrypt the data in 
+enclaves. The key will be refreshed in every boot. ARM TrustZone,
+on the other hand, does not encrypt the data in the secure world,
+since it follows a different security model.      
+
+
+
 \subsubsection{Adoption}
+
+
+
+
+
 Intel SGX is different from ARM TrustZone. Architecturally, with ARM TrustZone, a
 CPU is in two halves which are insecure world and the secure world. Any 
 communication occurs from the insecure world to the secure world is via the 
