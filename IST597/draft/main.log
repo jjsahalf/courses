@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 MAY 2017 23:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  1 JUN 2017 00:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -98,25 +98,36 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 (./difference.tex [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]) (.
-/main.bbl) [3] (./main.aux) ) 
+/main.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 29--32
+[]\OT1/cmr/m/n/10 ``Using in-tel sgx to pro-tect on-line cre-den-tials,''
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--32
+\OT1/cmr/m/n/10 https://blogs.bromium.com/using-intel-sgx-to-protect-on-line-cr
+edentials/,
+ []
+
+[3]) [4] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 685 strings out of 493089
- 8230 string characters out of 6134842
+ 686 strings out of 493089
+ 8232 string characters out of 6134842
  63104 words of memory out of 5000000
- 4208 multiletter control sequences out of 15000+600000
+ 4209 multiletter control sequences out of 15000+600000
  8536 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 23i,6n,19p,160b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb>
-Output written on main.pdf (3 pages, 78214 bytes).
+ 23i,6n,19p,160b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr17.pfb>
+Output written on main.pdf (4 pages, 78703 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 25 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

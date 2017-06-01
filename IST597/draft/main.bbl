@@ -21,7 +21,13 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{ChurchEncoding}
-``Church encoding,'' \url{http://goo.gl/I03nLI}, accessed: 2015-04-22.
+\bibitem{wolfssl}
+``Wolfssl,'' \url{https://www.wolfssl.com/wolfSSL/Home.html}, accessed:
+  2017-05-25.
+
+\bibitem{bromium}
+``Using intel sgx to protect on-line credentials,''
+  \url{https://blogs.bromium.com/using-intel-sgx-to-protect-on-line-credentials/},
+  accessed: 2015-05-25.
 
 \end{thebibliography}
