@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 JUN 2017 11:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 JUN 2017 11:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -102,8 +102,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 35.
  [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]) (.
-/extension.tex [3]
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+) (./extension.tex
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 8.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
@@ -143,7 +143,7 @@ cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 r17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9
 .pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
 pfb>
-Output written on main.pdf (6 pages, 133853 bytes).
+Output written on main.pdf (6 pages, 134162 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  44 compressed objects within 1 object stream
